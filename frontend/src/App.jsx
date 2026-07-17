@@ -46,8 +46,18 @@ export default function App() {
       })
     })
     .then(res => res.json())
-    .then(data => setResultado(data))
-    .catch(err => console.error(err));
+    .then(data => {
+      if (data && data.configuracion_actual) {
+        setResultado(data);
+      } else {
+        console.error("Respuesta de API inválida o error en el servidor:", data);
+        setResultado(null);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      setResultado(null);
+    });
   }, [lam, mu, c, c1, c2]);
 
   return (

@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 app = FastAPI(title="Motor Analitico de Colas - UNET IO-II")
-
+#uvicorn api.main:app --reload
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
