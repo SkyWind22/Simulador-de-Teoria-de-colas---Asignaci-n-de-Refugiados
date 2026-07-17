@@ -52,6 +52,7 @@ def calcular_metricas_mmc(lam: float, mu: float, c: int, c1: float, c2: float):
     }
 
 @app.post("/simulate")
+@app.post("/api/simulate")
 def simulate(data: SimulationInput):
     actual = calcular_metricas_mmc(data.lam, data.mu, data.c, data.c1, data.c2)
     
@@ -64,6 +65,7 @@ def simulate(data: SimulationInput):
         res = calcular_metricas_mmc(data.lam, data.mu, c_eval, data.c1, data.c2)
         if res:
             sensibilidad.append(res)
+          
             if res["etc"] < costo_minimo:
                 costo_minimo = res["etc"]
                 c_optimo = c_eval
